@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Study Buddy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    body {
+      margin: 0;
+      background: #fde2e4;
+      color: #7a2840;
+      font-family: 'Press Start 2P', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #fbcfe8;
+      box-shadow: 0 0 6px #f9a8d4;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-10px); opacity: 1; }
+      to { transform: translateY(110vh); opacity: 0; }
+    }
+
+    .app {
+      background: #fff1f2;
+      border: 4px solid #f472b6;
+      border-radius: 16px;
+      padding: 20px;
+      width: 320px;
+      box-shadow: 0 8px 0 #f9a8d4;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #be185d;
+    }
+
+    .pixel-face {
+      font-size: 52px;
+      animation: bounce 1.2s infinite;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .moods button {
+      width: 100%;
+      margin: 6px 0;
+      padding: 10px;
+      background: #fbcfe8;
+      border-radius: 12px;
+      border: 2px solid #f472b6;
+      color: #020617;
+      cursor: pointer;
+      font-size: 10px;
+    }
+
+    .moods button:hover {
+      background: #f9a8d4;
+    }
+
+    .suggestion {
+      margin-top: 14px;
+      padding: 10px;
+      border: 2px dashed #f472b6;
+      border-radius: 12px;
+      font-size: 9px;
+      min-height: 50px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 7px;
+      margin-top: 10px;
+      color: #f472b6;
+    }
+
+    .credit {
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      font-size: 7px;
+      font-style: italic;
+      color: #be185d;
+      opacity: 0.8;
+    }
+
+    .lily {
+      position: absolute;
+      top: -14px;
+      left: -14px;
+      font-size: 28px;
+      filter: drop-shadow(0 2px 0 #f9a8d4);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars" id="stars"></div>
+
+  <div class="app" role="main" aria-labelledby="app-title">
+    <h1 id="app-title">PIXEL STUDY BUDDY</h1>
+    <div class="lily" aria-hidden="true">🌸</div>
+
+    <div id="face" class="pixel-face" aria-live="polite">(•‿•)</div>
+
+    <div class="moods" role="group" aria-label="Select mood">
+      <button onclick="setMood('tired')">😴 TIRED</button>
+      <button onclick="setMood('stressed')">😵 STRESSED</button>
+      <button onclick="setMood('okay')">🙂 OKAY</button>
+      <button onclick="setMood('motivated')">🔥 MOTIVATED</button>
+    </div>
+
+    <div id="suggestion" class="suggestion" aria-live="polite">
+      Select your mood to get a study tip.
+    </div>
+
+    <footer>adaptive • calm • pixelated</footer>
+    <div class="credit">made by anushke</div>
+  </div>
+
+  <script>
+    const starsContainer = document.getElementById("stars");
+
+    for (let i = 0; i < 30; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = 3 + Math.random() * 4 + "s";
+      star.style.animationDelay = Math.random() * 5 + "s";
+      starsContainer.appendChild(star);
+    }
+
+    function setMood(mood) {
+      const face = document.getElementById("face");
+      const suggestion = document.getElementById("suggestion");
+
+      if (mood === "tired") {
+        face.textContent = "(－_－) zzZ";
+        suggestion.textContent =
+          "Try 25 min Pomodoro + 5 min break. Avoid heavy topics.";
+      }
+
+      if (mood === "stressed") {
+        face.textContent = "(×_×)";
+        suggestion.textContent =
+          "Switch to revision or mind-maps. Deep breathe for 2 minutes.";
+      }
+
+      if (mood === "okay") {
+        face.textContent = "(•‿•)";
+        suggestion.textContent =
+          "Good time for problem-solving or reading new concepts.";
+      }
+
+      if (mood === "motivated") {
+        face.textContent = "(★‿★)";
+        suggestion.textContent =
+          "Go for difficult tasks or mock tests. You are in flow!";
+      }
+    }
+  </script>
+</body>
+</html>

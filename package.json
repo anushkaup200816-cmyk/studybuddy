@@ -1,9 +1,11 @@
 {
   "name": "pixel-study-buddy",
   "version": "1.0.0",
-  "private": true,
+  "description": "Tiny static Pixel Study Buddy site",
   "scripts": {
     "start": "npx http-server public -p 5000",
-    "preview": "npx http-server public -p 5000"
-  }
+    "preview": "npm start"
+  },
+  "author": "anushke",
+  "license": "MIT"
 }
