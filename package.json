@@ -1,0 +1,9 @@
+{
+  "name": "pixel-study-buddy",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx http-server public -p 5000",
+    "preview": "npx http-server public -p 5000"
+  }
+}
